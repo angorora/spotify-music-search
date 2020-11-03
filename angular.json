@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "spotify-music-search"
+    }
+  },
+  "defaultProject": "spotify-music-search",
+  "cli": {
+    "analytics": false
+  }
 }
