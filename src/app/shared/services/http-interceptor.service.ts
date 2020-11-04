@@ -23,15 +23,20 @@ export class HttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (!req.headers.has('Content-Type')) {
-      req = req.clone({
-        headers: req.headers.set('Content-Type', 'application/json'),
-      });
-    }
-
     if (!req.url.includes('token')) {
+      if (!req.headers.has('Content-Type')) {
+        req = req.clone({
+          headers: req.headers.set('Content-Type', 'application/json'),
+        });
+      }
       req = this.addAuthTokenToHeaders(req);
     } else {
+      req = req.clone({
+        headers: req.headers.set(
+          'Content-Type',
+          'application/x-www-form-urlencoded'
+        ),
+      });
       req = this.addBasicAuthHeaders(req);
     }
     return next.handle(req).pipe(

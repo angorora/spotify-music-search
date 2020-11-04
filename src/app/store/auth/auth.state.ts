@@ -33,10 +33,10 @@ export class AuthState {
 
     return this.spotifyService.getAuth().pipe(
       tap((response: any) => {
-        if (response.success) {
+        if (response) {
           stateContext.setState({
             ...state,
-            token: response.responseBody,
+            token: response.access_token,
           });
           return this.store.dispatch(new Navigate(['/home']));
         } else {

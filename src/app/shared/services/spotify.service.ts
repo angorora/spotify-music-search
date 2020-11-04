@@ -1,18 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class SpotifyService {
   constructor(private http: HttpClient) {}
   getAuth = () => {
-    let params: URLSearchParams = new URLSearchParams();
+    let params = new URLSearchParams();
     params.set('grant_type', 'client_credentials');
-    let body = params.toString();
 
-    return this.http.post('https://accounts.spotify.com/authorize', body);
+    return this.http.post(
+      'https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token',
+      params.toString()
+    );
   };
 
   // Get search results for a query
