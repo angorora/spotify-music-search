@@ -1,1 +1,10 @@
-<p>artist-list works!</p>
+<div class="result-item" (click)="selectArtist()">
+  <div class="artist-name">
+    {{ artist.name }}
+  </div>
+  <div class="genres">
+    <div class="genre-item" *ngFor="let genre of artist.genres">
+      {{ genre }}
+    </div>
+  </div>
+</div>

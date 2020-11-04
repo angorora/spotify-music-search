@@ -1,0 +1,31 @@
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1em;
+  margin-top: 5px;
+  background-color: var(--background-quaternary);
+  height: 2.5rem;
+  .artist-name {
+    font-size: medium;
+    font-weight: bold;
+  }
+  .genres {
+    height: 0.8rem;
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+    .genre-item {
+      height: fit-content;
+      border: 1px solid #00fede;
+      margin-right: 3px;
+      border-radius: 5px;
+      padding: 1px 3px 1px 3px;
+      color: var(--background-quaternary);
+      background-color: var(--background-secondary);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

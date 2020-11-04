@@ -1,0 +1,100 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-direction: row;
+  $search-bg-color: #242628;
+  $icon-color: #00fede;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding: 10;
+  height: 100vh;
+  .search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 1%;
+    .artist-search {
+      display: flex;
+      justify-content: center;
+      width: 80vw;
+      height: fit-content;
+      margin: 40px auto 0;
+      background-color: $search-bg-color;
+      position: relative;
+      overflow: hidden;
+      .search-box {
+        width: 80%;
+        height: 60%;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        color: #fff;
+        padding: 20px 100px 20px 45px;
+        font-size: 5vw;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .search-results {
+      overflow-x: hidden;
+      height: 70vh;
+      width: 80vw;
+      background-color: var(--background-tertiary);
+      //   .result-item {
+      //     display: flex;
+      //     flex-direction: column;
+      //     align-items: flex-start;
+      //     padding: 1em;
+      //     margin-top: 5px;
+      //     background-color: var(--background-quaternary);
+      //     height: 2.5rem;
+      //     .artist-name {
+      //       font-size: medium;
+      //       font-weight: bold;
+      //     }
+      //     .genres {
+      //       height: 0.8rem;
+      //       display: flex;
+      //       width: 100%;
+      //       margin-top: 5px;
+      //       .genre-item {
+      //         height: fit-content;
+      //         border: 1px solid #00fede;
+      //         margin-right: 3px;
+      //         border-radius: 5px;
+      //         padding: 1px 3px 1px 3px;
+      //         color: var(--background-quaternary);
+      //         background-color: var(--background-secondary);
+      //       }
+      //     }
+      //   }
+      //   &:hover {
+      //     cursor: pointer;
+      //   }
+      width: 80vw;
+    }
+  }
+  .history-widget {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 3px;
+    margin: 3px;
+
+    .history {
+      text-align: center;
+      padding-left: 1%;
+      padding-right: 1%;
+      width: 250px;
+      background-color: var(--background-secondary);
+      color: var(--background-quaternary);
+      height: 50vh;
+    }
+  }
+}

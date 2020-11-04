@@ -12,13 +12,18 @@ import { ErrorState } from './store/error/error.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { HttpInterceptorService } from './shared/services/http-interceptor.service';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { ArtistState } from './store/artist/artist.state';
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgxsModule.forRoot([AuthState, ErrorState], {
+    CoreModule,
+    SharedModule,
+    NgxsModule.forRoot([AuthState, ArtistState, ErrorState], {
       developmentMode: !environment.production,
     }),
     NgxsStoragePluginModule.forRoot({

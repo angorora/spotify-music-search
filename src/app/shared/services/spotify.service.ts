@@ -27,6 +27,10 @@ export class SpotifyService {
     //   .map(res => res.json());
   }
 
+  searchArtists(query: string) {
+    const searchUrl = `${environment.baseURL}/search?q=${query}&offset=0&limit=20&type=artist`;
+    return this.http.get(searchUrl);
+  }
   // Get data about artist that has been chosen to view
   getArtist(id: string, authToken: string) {
     // let headers = new Headers();
@@ -37,12 +41,9 @@ export class SpotifyService {
   }
 
   // Get the albums about the artist that has been chosen
-  getAlbums(id: string, authToken: string) {
-    // let headers = new Headers();
-    // headers.append('Authorization', 'Bearer ' + authToken);
-    // this.albumsUrl = 'https://api.spotify.com/v1/artists/' + id + '/albums?market=US&album_type=single';
-    // return this._http.get(this.albumsUrl, { headers: headers })
-    //   .map(res => res.json());
+  searchAlbums(id: string) {
+    const searchUrl = `${environment.baseURL}/artists/${id}/albums`;
+    return this.http.get(searchUrl);
   }
 
   // Get Tracks in ablum selected

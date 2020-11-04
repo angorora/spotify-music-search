@@ -1,1 +1,36 @@
-<p>home works!</p>
+<div class="wrapper">
+  <section class="search">
+    <div class="artist-search">
+      <form [formGroup]="searchForm">
+        <input
+          #searchInput
+          formControlName="songSearch"
+          type="text"
+          class="search-box"
+          maxlength="40"
+          placeholder="Search Artist"
+        />
+      </form>
+    </div>
+    <div class="search-results">
+      <artist-list
+        [artist]="artist"
+        artistClick)="goToAlbums($event)"
+        *ngFor="let artist of artists$ | async; trackBy: trackByFn"
+      >
+      </artist-list>
+    </div>
+  </section>
+
+  <section class="history-widget">
+    <div class="history">
+      <h4 class="history-heading">Search History</h4>
+      <artist-list
+        (artistClick)="goToAlbums($event)"
+        [artist]="artist"
+        *ngFor="let artist of history$ | async; trackBy: trackByFn"
+      >
+      </artist-list>
+    </div>
+  </section>
+</div>
