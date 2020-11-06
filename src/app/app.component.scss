@@ -1,0 +1,51 @@
+:host {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 12vh 50vh 10vh;
+  grid-area: header;
+
+  .header {
+    height: 100%;
+    background-color: var(--background-default);
+    grid-area: header;
+    .header-title {
+      margin: 0;
+      text-align: center;
+      color: var(--foreground-default);
+      font-size: 3rem;
+    }
+    .page-title {
+      margin: 0;
+      padding-left: 2%;
+      text-align: left;
+      color: var(--foreground-default);
+      font-size: 2rem;
+    }
+    @media (max-width: 920px) {
+      .header-title {
+        margin-top: 20px;
+        text-align: center;
+        color: var(--foreground-default);
+        font-size: 1.5rem;
+      }
+      .page-title {
+        margin-top: 0;
+        padding-left: 2%;
+        text-align: center;
+        color: var(--foreground-default);
+        font-size: 1rem;
+      }
+    }
+  }
+  .main-content {
+    grid-area: main-content;
+  }
+  .footer {
+    grid-area: footer;
+  }
+
+  grid-template-areas:
+    "header"
+    "main-content"
+    "footer";
+}

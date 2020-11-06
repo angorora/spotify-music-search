@@ -1,0 +1,73 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  height: 5vh;
+  .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--foreground-tertiary);
+  }
+}
+.backBtn {
+  background-color: var(--background-secondary);
+  border: none;
+  color: var(--background-quaternary);
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.album-details {
+  display: flex;
+  justify-content: start;
+  height: 15vh;
+  .album {
+    height: 100%;
+    .album-image {
+      border: 3px solid white;
+      border-radius: 5px;
+      height: 80%;
+    }
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    .artists {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      div::before {
+        content: " ";
+      }
+      div:not(:last-child):after {
+        content: " + ";
+      }
+    }
+    .album-title {
+      color: var(--foreground-tertiary);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+  .tracks {
+    height: 15vh;
+    margin-top: 5px;
+    border-top: 3px solid red;
+  }
+
+  .artists-header {
+    color: var(--background-tertiary);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+.tracks-header {
+  color: var(--foreground-tertiary);
+  font-size: 1.2rem;
+  font-weight: 700;
+}

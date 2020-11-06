@@ -1,0 +1,11 @@
+<div class="card">
+  <img class="album-image" [src]="album.images[0].url" alt="" />
+
+  <div class="card-content">
+    <div class="card-title">{{ album.name }}</div>
+
+    <button (click)="selectAlbum(album)" class="btn btn-block card-btn">
+      Album Details
+    </button>
+  </div>
+</div>

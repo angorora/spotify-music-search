@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<section class="header">
+  <p class="header-title">Spotify Music Search</p>
+  <p class="page-title">{{ pageTitle$ | async }}</p>
+</section>
+<section class="main-content"><router-outlet></router-outlet></section>
+<section class="footer"></section>

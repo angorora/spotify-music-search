@@ -1,0 +1,42 @@
+:host {
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    height: 5vh;
+    .title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--foreground-tertiary);
+    }
+  }
+  .backBtn {
+    background-color: var(--background-secondary);
+    border: none;
+    color: var(--background-quaternary);
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .albumlist {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-flow: dense;
+    .card-item {
+      display: flex;
+      padding: 1rem;
+      @media (min-width: 40rem) {
+        width: 50%;
+      }
+      @media (min-width: 56rem) {
+        width: 100%;
+      }
+    }
+  }
+}

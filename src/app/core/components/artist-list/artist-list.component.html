@@ -1,1 +1,12 @@
-<p>artist-list works!</p>
+<div class="result-item" (click)="selectArtist()">
+  <div class="artist-name">Artist: {{ artist.name }}</div>
+  <div class="genre-title">Genres</div>
+  <div class="genres">
+    <div
+      class="genre-item truncate"
+      *ngFor="let genre of artist.genres; let i = index"
+    >
+      {{ genre }}
+    </div>
+  </div>
+</div>

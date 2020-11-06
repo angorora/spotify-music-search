@@ -1,0 +1,12 @@
+<section class="page-header">
+  <span class="title">Albums By Artist</span>
+  <span> <button class="backBtn" (click)="navigateBack()">Back</button></span>
+</section>
+<section class="albumlist">
+  <album-card
+    class="card-item"
+    (albumClick)="gotoAlbumDetails($event)"
+    [album]="album"
+    *ngFor="let album of albums$ | async; trackBy: trackByFn"
+  ></album-card>
+</section>

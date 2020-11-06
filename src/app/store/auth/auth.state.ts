@@ -9,14 +9,18 @@ import { ApiError } from '../error/error.actions';
 import { Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { SpotifyService } from '../../shared/services/spotify.service';
-@State<{ token: string }>({
+@State<{ token: string; expires_in: number }>({
   name: 'authState',
 })
 @Injectable()
 export class AuthState {
   @Selector()
-  static token(state: { token: string }) {
+  static token(state: { token: string; expires_in: number }) {
     return state?.token;
+  }
+  @Selector()
+  static tokenExpiry(state: { token: string; expires_in: number }) {
+    return state?.expires_in;
   }
 
   constructor(
@@ -26,17 +30,18 @@ export class AuthState {
   ) {}
   @Action(GetToken)
   getAuthToken(
-    stateContext: StateContext<{ token: string }>,
+    stateContext: StateContext<{ token: string; expires_in: number }>,
     action: GetToken
   ) {
     const state = stateContext.getState();
 
     return this.spotifyService.getAuth().pipe(
       tap((response: any) => {
-        if (response.success) {
+        if (response) {
           stateContext.setState({
             ...state,
-            token: response.responseBody,
+            token: response.access_token,
+            expires_in: response.expires_in,
           });
           return this.store.dispatch(new Navigate(['/home']));
         } else {
