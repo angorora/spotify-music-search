@@ -8,13 +8,13 @@
           type="text"
           class="search-box"
           maxlength="40"
-          placeholder="Search Artist..."
+          placeholder="Search for artist here ..."
         />
       </form>
     </div>
     <div class="search-results">
       <div *ngIf="!(artists$ | async).length" class="nothing">
-        <em>Nothiing to display yet</em>
+        <em>Your search results will appear here</em>
       </div>
       <artist-list
         [artist]="artist"

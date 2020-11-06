@@ -28,6 +28,10 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-auto-flow: dense;
+    @media (max-width: 920px) {
+      display: flex;
+      flex-direction: column;
+    }
     .card-item {
       display: flex;
       padding: 1rem;

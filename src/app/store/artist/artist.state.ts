@@ -109,7 +109,6 @@ export class ArtistState {
                 albums: response.items,
               },
             });
-            //return this.store.dispatch(new Navigate(['/home']));
           } else {
             stateContext.dispatch(
               new ApiError({ status: 200, message: response.message })
