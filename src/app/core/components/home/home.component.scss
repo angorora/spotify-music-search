@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  //padding-left: 1%;
   padding-right: 1%;
   padding: 10;
   height: 100vh;
@@ -45,10 +44,14 @@
       }
     }
     .search-results {
+      .nothing {
+        color: var(--background-quaternary);
+      }
       overflow-x: hidden;
       max-height: 90vh;
-      overflow-y: scroll;
+      overflow-y: auto;
       width: 80vw;
+      border: 3px solid var(--background-quaternary);
       background-color: var(--background-tertiary);
     }
   }
@@ -59,7 +62,6 @@
   }
   .history-widget {
     height: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -75,7 +77,8 @@
       background-color: var(--background-secondary);
       color: var(--background-quaternary);
       height: 50vh;
-      overflow-y: scroll;
+      border: 3px solid;
+      overflow-y: auto;
       overflow-x: hidden;
     }
     @media (max-width: 920px) {

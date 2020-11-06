@@ -19,7 +19,7 @@ import { ArtistState } from 'src/app/store/artist/artist.state';
   styleUrls: ['./albums.component.scss'],
 })
 
-//TODO Make responsive
+//TODO Add more media query breakpoints
 export class AlbumsComponent implements OnInit {
   @Select(ArtistState.selectedArtistAlbums)
   albums$: Observable<Album[]>;

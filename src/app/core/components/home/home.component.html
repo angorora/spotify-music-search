@@ -14,7 +14,7 @@
     </div>
     <div class="search-results">
       <div *ngIf="!(artists$ | async).length" class="nothing">
-        <em>Nothiing to display yet</em>
+        <em>Your search results will appear here</em>
       </div>
       <artist-list
         [artist]="artist"
