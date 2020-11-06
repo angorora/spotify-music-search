@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
     });
     this.store.dispatch(new ChangePageTitle('Seach Artists'));
     let token = this.store.selectSnapshot<string>(AuthState.token);
-    //if (!token)
     this.store.dispatch(new GetToken());
     this.formVal$ = fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
       map((event: any) => event.target.value),

@@ -17,7 +17,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 80vw;
+      width: 70vw;
       height: 10vh;
       background-color: var(--background-default);
       position: relative;
@@ -50,7 +50,7 @@
       overflow-x: hidden;
       max-height: 90vh;
       overflow-y: auto;
-      width: 80vw;
+      width: 70vw;
       border: 3px solid var(--background-quaternary);
       background-color: var(--background-tertiary);
     }
@@ -73,7 +73,7 @@
       text-align: center;
       padding-left: 1%;
       padding-right: 1%;
-      width: 250px;
+      width: 20vw;
       background-color: var(--background-secondary);
       color: var(--background-quaternary);
       height: 50vh;
@@ -83,7 +83,7 @@
     }
     @media (max-width: 920px) {
       .history {
-        width: 80vw;
+        width: 70vw;
       }
     }
   }
