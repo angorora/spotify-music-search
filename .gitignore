@@ -11,7 +11,7 @@
 /node_modules
 
 # to avoid leaking important info
-/environments
+#/environments
 
 # profiling files
 chrome-profiler-events*.json
