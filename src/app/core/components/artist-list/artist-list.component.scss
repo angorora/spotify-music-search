@@ -2,27 +2,44 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
   padding: 1em;
   margin-top: 5px;
   background-color: var(--background-quaternary);
-  height: 2.5rem;
+  border-radius: 5px;
+  height: 3.2rem;
+  .genre-title {
+    font-weight: 700;
+    color: var(--foreground-tertiary);
+  }
   .artist-name {
-    font-size: medium;
+    font-size: 1.2rem;
     font-weight: bold;
+    color: var(--foreground-tertiary);
   }
   .genres {
     height: 0.8rem;
     display: flex;
     width: 100%;
-    margin-top: 5px;
     .genre-item {
       height: fit-content;
-      border: 1px solid #00fede;
+      border: 1px solid var(--foreground-tertiary);
       margin-right: 3px;
       border-radius: 5px;
       padding: 1px 3px 1px 3px;
       color: var(--background-quaternary);
       background-color: var(--background-secondary);
+    }
+    .truncate {
+      width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (min-width: 920px) {
+      .truncate {
+        width: fit-content;
+      }
     }
   }
   &:hover {

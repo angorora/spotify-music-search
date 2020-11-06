@@ -1,25 +1,31 @@
 import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { Artist } from 'src/app/shared/models/artist.model';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
+import { Album, Artist, Track } from 'src/app/shared/models/artist.model';
 import { SpotifyService } from 'src/app/shared/services/spotify.service';
 import {
+  ClearSelectedArtist,
   GetArtists,
+  GetSelectedAlbumDetails,
   GetSelectedArtistAlbums,
+  SaveSelectedAlbum,
+  SaveSelectedArtist,
   SaveSelectedArtistToHistory,
 } from './artist.actions';
 import { ApiError } from '../error/error.actions';
 import { tap } from 'rxjs/operators';
 import { patch } from '@ngxs/store/operators';
+import { Navigate } from '@ngxs/router-plugin';
 interface ArtistStateInterface {
   artists: Artist[];
   selectedArtist?: Artist;
+  selectedAlbum?: Album;
   selectedArtistHistory?: Artist[];
 }
 @State<ArtistStateInterface>({
   name: 'artistState',
   defaults: {
     artists: [],
+    selectedArtistHistory: [],
     selectedArtist: null,
   },
 })
@@ -32,6 +38,32 @@ export class ArtistState {
   @Selector()
   static selectedArtist(state: ArtistStateInterface) {
     return state?.selectedArtist;
+  }
+  @Selector()
+  static selectedArtistAlbums(state: ArtistStateInterface) {
+    return state?.selectedArtist?.albums;
+  }
+  @Selector()
+  static selectedAlbum(state: ArtistStateInterface) {
+    return state?.selectedAlbum;
+  }
+  @Selector()
+  static selectedAlbumImages(state: ArtistStateInterface) {
+    return state?.selectedAlbum?.images[1].url;
+  }
+  @Selector()
+  static selectedAlbumTitle(state: ArtistStateInterface) {
+    return state?.selectedAlbum?.name;
+  }
+  @Selector()
+  static selectedAlbumTracks(state: ArtistStateInterface) {
+    return state?.selectedAlbum.tracks
+      .slice()
+      .sort((a, b) => 0 - (a.name > b.name ? -1 : 1));
+  }
+  @Selector()
+  static selectedAlbumArtists(state: ArtistStateInterface) {
+    return state?.selectedAlbum?.artists;
   }
   @Selector()
   static selectedArtistHistory(state: ArtistStateInterface) {
@@ -64,27 +96,61 @@ export class ArtistState {
   }
 
   @Action(GetSelectedArtistAlbums)
-  getSelectedArtist(
-    stateContext: StateContext<ArtistStateInterface>,
-    action: GetSelectedArtistAlbums
+  GetSelectedArtistAlbums(stateContext: StateContext<ArtistStateInterface>) {
+    const state = stateContext.getState();
+    if (!!state.selectedArtist?.id) {
+      return this.spotifyService.searchAlbums(state.selectedArtist.id).pipe(
+        tap((response: any) => {
+          if (response) {
+            stateContext.setState({
+              ...state,
+              selectedArtist: {
+                ...state.selectedArtist,
+                albums: response.items,
+              },
+            });
+            //return this.store.dispatch(new Navigate(['/home']));
+          } else {
+            stateContext.dispatch(
+              new ApiError({ status: 200, message: response.message })
+            );
+          }
+        })
+      );
+    } else {
+      this.store.dispatch(new Navigate(['/home']));
+    }
+  }
+  @Action(GetSelectedAlbumDetails)
+  GetSelectedArtistAlbumDetails(
+    stateContext: StateContext<ArtistStateInterface>
   ) {
     const state = stateContext.getState();
-
-    return this.spotifyService.searchAlbums(state.selectedArtist.id).pipe(
-      tap((response: any) => {
-        if (response) {
-          stateContext.setState({
-            ...state,
-            artists: response.items,
-          });
-          //return this.store.dispatch(new Navigate(['/home']));
-        } else {
-          stateContext.dispatch(
-            new ApiError({ status: 200, message: response.message })
-          );
-        }
-      })
-    );
+    if (!!state.selectedAlbum?.id) {
+      return this.spotifyService.getAlbumDetails(state.selectedAlbum.id).pipe(
+        tap((response: any) => {
+          if (response) {
+            stateContext.setState({
+              ...state,
+              selectedAlbum: {
+                ...state.selectedAlbum,
+                artists: response.artists,
+                release_date: response.release_date,
+                images: response.images,
+                tracks: response.tracks.items,
+              },
+              selectedAlbumTracks: response.tracks.items,
+            });
+          } else {
+            stateContext.dispatch(
+              new ApiError({ status: 200, message: response.message })
+            );
+          }
+        })
+      );
+    } else {
+      this.store.dispatch(new Navigate(['/home']));
+    }
   }
   @Action(SaveSelectedArtistToHistory)
   SaveSelectedArtistToHistory(
@@ -104,5 +170,36 @@ export class ArtistState {
           ],
         })
       );
+  }
+
+  @Action(SaveSelectedArtist)
+  SaveSelectedArtist(
+    stateContext: StateContext<ArtistStateInterface>,
+    action: SaveSelectedArtist
+  ) {
+    stateContext.setState(
+      patch({
+        selectedArtist: action.artist,
+      })
+    );
+  }
+  @Action(SaveSelectedAlbum)
+  SaveSelectedAlbum(
+    stateContext: StateContext<ArtistStateInterface>,
+    action: SaveSelectedAlbum
+  ) {
+    stateContext.setState(
+      patch({
+        selectedAlbum: action.album,
+      })
+    );
+  }
+  @Action(ClearSelectedArtist)
+  ClearSelectedArtist(stateContext: StateContext<ArtistStateInterface>) {
+    stateContext.setState(
+      patch({
+        selectedArtist: null,
+      })
+    );
   }
 }

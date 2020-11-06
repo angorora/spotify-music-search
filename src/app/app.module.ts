@@ -15,6 +15,7 @@ import { HttpInterceptorService } from './shared/services/http-interceptor.servi
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ArtistState } from './store/artist/artist.state';
+import { AppState } from './store/app/app.state';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,7 +24,7 @@ import { ArtistState } from './store/artist/artist.state';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    NgxsModule.forRoot([AuthState, ArtistState, ErrorState], {
+    NgxsModule.forRoot([AuthState, ArtistState, AppState, ErrorState], {
       developmentMode: !environment.production,
     }),
     NgxsStoragePluginModule.forRoot({

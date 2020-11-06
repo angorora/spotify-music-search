@@ -11,8 +11,10 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import { Artist } from 'src/app/shared/models/artist.model';
+import { ChangePageTitle, NavigatedRoute } from 'src/app/store/app/app.actions';
 import {
   GetArtists,
+  SaveSelectedArtist,
   SaveSelectedArtistToHistory,
 } from 'src/app/store/artist/artist.actions';
 import { ArtistState } from 'src/app/store/artist/artist.state';
@@ -44,7 +46,7 @@ export class HomeComponent implements OnInit {
     this.searchForm = new FormGroup({
       songSearch: new FormControl(),
     });
-
+    this.store.dispatch(new ChangePageTitle('Seach Artists'));
     let token = this.store.selectSnapshot<string>(AuthState.token);
     //if (!token)
     this.store.dispatch(new GetToken());
@@ -63,10 +65,15 @@ export class HomeComponent implements OnInit {
   }
   gotoAlbums(artist: Artist) {
     this.addToHistory(artist);
+    this.saveSelectedArtist(artist);
+    this.store.dispatch(new NavigatedRoute('/home'));
     this.store.dispatch(new Navigate(['/albums']));
   }
   addToHistory(artist: Artist) {
     this.store.dispatch(new SaveSelectedArtistToHistory(artist));
+  }
+  saveSelectedArtist(artist: Artist) {
+    this.store.dispatch(new SaveSelectedArtist(artist));
   }
   trackByFn(index, artist: Artist) {
     return artist.id;

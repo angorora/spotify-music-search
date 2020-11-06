@@ -47,13 +47,8 @@ export class SpotifyService {
   }
 
   // Get Tracks in ablum selected
-  getAlbum(id: string, authToken: string) {}
-
-  // let headers = new Headers();
-  // headers.append('Authorization', 'Bearer ' + authToken);
-
-  // this.albumUrl = 'https://api.spotify.com/v1/albums/' + id;
-
-  // return this._http.get(this.albumUrl, { headers: headers })
-  //   .map(res => res.json());
+  getAlbumDetails(id: string) {
+    const searchUrl = `${environment.baseURL}/albums/${id}`;
+    return this.http.get(searchUrl);
+  }
 }

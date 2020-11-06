@@ -8,14 +8,17 @@
           type="text"
           class="search-box"
           maxlength="40"
-          placeholder="Search Artist"
+          placeholder="Search Artist..."
         />
       </form>
     </div>
     <div class="search-results">
+      <div *ngIf="!(artists$ | async).length" class="nothing">
+        <em>Nothiing to display yet</em>
+      </div>
       <artist-list
         [artist]="artist"
-        artistClick)="goToAlbums($event)"
+        (artistClick)="gotoAlbums($event)"
         *ngFor="let artist of artists$ | async; trackBy: trackByFn"
       >
       </artist-list>
@@ -24,9 +27,12 @@
 
   <section class="history-widget">
     <div class="history">
-      <h4 class="history-heading">Search History</h4>
+      <h4 class="history-heading">Recently Viewed</h4>
+      <div *ngIf="!(history$ | async).length" class="nothing">
+        <em>Nothiing to display yet</em>
+      </div>
       <artist-list
-        (artistClick)="goToAlbums($event)"
+        (artistClick)="gotoAlbums($event)"
         [artist]="artist"
         *ngFor="let artist of history$ | async; trackBy: trackByFn"
       >

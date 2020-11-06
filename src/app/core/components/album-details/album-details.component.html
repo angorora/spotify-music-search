@@ -1,0 +1,25 @@
+<section class="page-header">
+  <span class="title">Details of Album and Tracks Freatured</span>
+  <span> <button class="backBtn" (click)="navigateBack()">Back</button></span>
+</section>
+<section class="album-details">
+  <div class="album">
+    <img [src]="image$ | async" alt="" class="album-image" />
+  </div>
+  <article class="info">
+    <div class="album-title">{{ title$ | async }}</div>
+    <div class="artists-header">Artists</div>
+    <div class="artists">
+      <div *ngFor="let artist of artists$ | async; trackbyLtrackByFn">
+        {{ artist.name }}
+      </div>
+    </div>
+  </article>
+</section>
+<div class="tracks-header">Tracks</div>
+<section class="tracks">
+  <tracks
+    *ngFor="let track of tracks$ | async; trackBy: trackByFn"
+    [track]="track"
+  ></tracks>
+</section>

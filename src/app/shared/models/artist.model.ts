@@ -14,10 +14,12 @@ export interface Image {
 export interface Album {
   name: string;
   id: string;
-  release_date: string;
-  images: Image[];
-  tracks: Track[];
+  release_date?: string;
+  images?: Image[];
+  tracks?: Track[];
+  artists?: Artist[];
 }
 export interface Track {
   name: string;
+  artists: Artist[];
 }
