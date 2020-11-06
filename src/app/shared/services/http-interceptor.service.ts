@@ -74,8 +74,6 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   private addBasicAuthHeaders(req: HttpRequest<any>): HttpRequest<any> {
-    const clientId: string = environment.clientId;
-    const clientSecret: string = environment.clientSecret;
     return req.clone({
       headers: req.headers.set(
         'Authorization',

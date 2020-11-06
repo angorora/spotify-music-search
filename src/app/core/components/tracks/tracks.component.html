@@ -1,5 +1,11 @@
 <div class="track-item">
   <div class="artist-name">{{ track.name }}</div>
 
-  <button class="previewBtn" (click)="previewTrack()">Preview ></button>
+  <a
+    class="previewBtn"
+    [attr.disabled]="track.preview_url?.length <= 0"
+    (click)="previewTrack(track.preview_url)"
+  >
+    Preview >
+  </a>
 </div>

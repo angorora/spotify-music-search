@@ -18,12 +18,12 @@ export class TracksComponent implements OnInit {
   @Input()
   track: Track;
   @Output()
-  trackPreviewClick = new EventEmitter<Track>();
+  trackPreviewClick = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit(): void {}
 
-  previewTrack() {
-    this.trackPreviewClick.emit(this.track);
+  previewTrack(preview_url) {
+    this.trackPreviewClick.emit(preview_url);
   }
 }

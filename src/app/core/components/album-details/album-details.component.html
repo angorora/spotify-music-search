@@ -19,6 +19,7 @@
 <div class="tracks-header">Tracks</div>
 <section class="tracks">
   <tracks
+    (trackPreviewClick)="previewTrack($event)"
     *ngFor="let track of tracks$ | async; trackBy: trackByFn"
     [track]="track"
   ></tracks>

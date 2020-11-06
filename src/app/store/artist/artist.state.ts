@@ -139,7 +139,6 @@ export class ArtistState {
                 images: response.images,
                 tracks: response.tracks.items,
               },
-              selectedAlbumTracks: response.tracks.items,
             });
           } else {
             stateContext.dispatch(
@@ -177,22 +176,42 @@ export class ArtistState {
     stateContext: StateContext<ArtistStateInterface>,
     action: SaveSelectedArtist
   ) {
-    stateContext.setState(
-      patch({
-        selectedArtist: action.artist,
-      })
-    );
+    const state = stateContext.getState();
+    if (action.artist.id !== state.selectedArtist?.id) {
+      stateContext.setState(
+        patch({
+          selectedArtist: action.artist,
+        })
+      );
+      return stateContext.dispatch(new GetSelectedArtistAlbums());
+    } else {
+      stateContext.setState(
+        patch({
+          selectedArtist: { ...state.selectedArtist },
+        })
+      );
+    }
   }
   @Action(SaveSelectedAlbum)
   SaveSelectedAlbum(
     stateContext: StateContext<ArtistStateInterface>,
     action: SaveSelectedAlbum
   ) {
-    stateContext.setState(
-      patch({
-        selectedAlbum: action.album,
-      })
-    );
+    const state = stateContext.getState();
+    if (action.album.id !== state.selectedAlbum?.id) {
+      stateContext.setState(
+        patch({
+          selectedAlbum: action.album,
+        })
+      );
+      stateContext.dispatch(new GetSelectedAlbumDetails());
+    } else {
+      stateContext.setState(
+        patch({
+          selectedAlbum: { ...state.selectedAlbum },
+        })
+      );
+    }
   }
   @Action(ClearSelectedArtist)
   ClearSelectedArtist(stateContext: StateContext<ArtistStateInterface>) {

@@ -18,12 +18,8 @@ import { ArtistState } from 'src/app/store/artist/artist.state';
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.scss'],
 })
-//TODO Order Tracks By Name
+
 //TODO Make responsive
-//TODO  Deal With Preview
-//TODO Use Cache
-//TODO Prefill the search Artist Box
-//TODO Create A back Service
 export class AlbumsComponent implements OnInit {
   @Select(ArtistState.selectedArtistAlbums)
   albums$: Observable<Album[]>;
@@ -33,11 +29,10 @@ export class AlbumsComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new ChangePageTitle('View Albums'));
-    this.store.dispatch(new GetSelectedArtistAlbums());
   }
   gotoAlbumDetails(album) {
     this.saveSelectedALbum(album);
-    this.store.dispatch(new GetSelectedAlbumDetails());
+
     this.store.dispatch(new NavigatedRoute('/albums'));
     this.store.dispatch(new Navigate(['/album-details']));
   }
@@ -47,6 +42,7 @@ export class AlbumsComponent implements OnInit {
   navigateBack() {
     this.nav.navigateBack();
   }
+
   trackByFn(index, album: Album) {
     return album.id;
   }

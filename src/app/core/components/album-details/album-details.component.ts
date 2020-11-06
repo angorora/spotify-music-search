@@ -39,4 +39,7 @@ export class AlbumDetailsComponent implements OnInit {
   trackByFn(index, album: Album) {
     return album.id;
   }
+  previewTrack(url) {
+    window.open(url, '_blank');
+  }
 }

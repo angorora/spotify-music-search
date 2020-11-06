@@ -22,4 +22,5 @@ export interface Album {
 export interface Track {
   name: string;
   artists: Artist[];
+  preview_url: string;
 }

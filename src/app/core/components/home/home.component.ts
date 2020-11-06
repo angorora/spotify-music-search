@@ -26,10 +26,8 @@ import { AuthState } from 'src/app/store/auth/auth.state';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-//TODO When No ArtistsFound
+
 // TODO Loading..
-// TODO  Clear out selected Artist on landing on Home Page
-// TODO Implement Back
 export class HomeComponent implements OnInit {
   searchForm: FormGroup;
   formVal$: Observable<string>;
