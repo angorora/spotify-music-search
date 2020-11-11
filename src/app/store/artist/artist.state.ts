@@ -1,7 +1,7 @@
 import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Album, Artist, Track } from 'src/app/shared/models/artist.model';
-import { SpotifyService } from 'src/app/shared/services/spotify.service';
+import { SpotifyService } from 'src/app/core/services/spotify.service';
 import {
   ClearSelectedArtist,
   GetArtists,

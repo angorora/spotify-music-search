@@ -10,7 +10,7 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { ErrorState } from './store/error/error.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { HttpInterceptorService } from './shared/services/http-interceptor.service';
+import { HttpInterceptorService } from './core/services/http-interceptor.service';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ArtistState } from './store/artist/artist.state';

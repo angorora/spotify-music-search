@@ -8,7 +8,7 @@ import { ApiError } from '../error/error.actions';
 
 import { Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
-import { SpotifyService } from '../../shared/services/spotify.service';
+import { SpotifyService } from '../../core/services/spotify.service';
 @State<{ token: string; expires_in: number }>({
   name: 'authState',
 })

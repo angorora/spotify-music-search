@@ -7,7 +7,7 @@ import {
   Image,
   Track,
 } from 'src/app/shared/models/artist.model';
-import { NavigateBackService } from 'src/app/shared/services/navigate-back.service';
+import { NavigateBackService } from 'src/app/core/services/navigate-back.service';
 import { ChangePageTitle } from 'src/app/store/app/app.actions';
 import { ArtistState } from 'src/app/store/artist/artist.state';
 

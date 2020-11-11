@@ -3,7 +3,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Album } from 'src/app/shared/models/artist.model';
-import { NavigateBackService } from 'src/app/shared/services/navigate-back.service';
+import { NavigateBackService } from 'src/app/core/services/navigate-back.service';
 import { ChangePageTitle, NavigatedRoute } from 'src/app/store/app/app.actions';
 import { AppState } from 'src/app/store/app/app.state';
 import { SaveSelectedAlbum } from 'src/app/store/artist/artist.actions';

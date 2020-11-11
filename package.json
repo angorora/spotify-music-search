@@ -2,10 +2,10 @@
   "name": "spotify-music-search",
   "version": "0.0.0",
   "scripts": {
-    "config": "node ./set-env.ts",
+    "config": "ts-node ./set-env.ts",
     "ng": "ng",
     "start": "node server.js",
-    "local": "npm run config -- --environment=prod && ng serve",
+    "local": "npm run config --environment=prod && ng serve",
     "build": "npm run config && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
