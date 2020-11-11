@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'error',
     component: HomeComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];
 
 @NgModule({

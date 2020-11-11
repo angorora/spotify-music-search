@@ -1,4 +1,4 @@
-import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
+import { State, Selector, Action, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { ChangePageTitle, NavigatedRoute } from './app.actions';
 import { patch } from '@ngxs/store/operators';
@@ -36,7 +36,6 @@ export class AppState {
   }
   @Action(NavigatedRoute)
   navigatedRoute(ctx: StateContext<AppStateModel>, action: NavigatedRoute) {
-    const state = ctx.getState();
     return ctx.setState(
       patch({
         previousRoute: action.url,

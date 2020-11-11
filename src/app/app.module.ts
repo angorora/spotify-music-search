@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './core/components/home/home.component';
 import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './store/auth/auth.state';
 import { environment } from 'src/environments/environment';

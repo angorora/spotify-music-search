@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Artist, Track } from 'src/app/shared/models/artist.model';
+import { Track } from 'src/app/shared/models/artist.model';
 
 @Component({
   selector: 'tracks',

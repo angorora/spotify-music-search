@@ -1,16 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Album, Artist } from 'src/app/shared/models/artist.model';
+import { Album } from 'src/app/shared/models/artist.model';
 import { NavigateBackService } from 'src/app/shared/services/navigate-back.service';
 import { ChangePageTitle, NavigatedRoute } from 'src/app/store/app/app.actions';
 import { AppState } from 'src/app/store/app/app.state';
-import {
-  GetSelectedAlbumDetails,
-  GetSelectedArtistAlbums,
-  SaveSelectedAlbum,
-} from 'src/app/store/artist/artist.actions';
+import { SaveSelectedAlbum } from 'src/app/store/artist/artist.actions';
 import { ArtistState } from 'src/app/store/artist/artist.state';
 
 @Component({
@@ -43,7 +39,7 @@ export class AlbumsComponent implements OnInit {
     this.nav.navigateBack();
   }
 
-  trackByFn(index, album: Album) {
+  trackByFn(album: Album) {
     return album.id;
   }
 }

@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Artist } from 'src/app/shared/models/artist.model';
 
 @Component({

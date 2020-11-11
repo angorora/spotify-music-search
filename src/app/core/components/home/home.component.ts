@@ -7,7 +7,6 @@ import {
   debounceTime,
   distinctUntilChanged,
   map,
-  startWith,
   switchMap,
 } from 'rxjs/operators';
 import { Artist } from 'src/app/shared/models/artist.model';
@@ -19,7 +18,6 @@ import {
 } from 'src/app/store/artist/artist.actions';
 import { ArtistState } from 'src/app/store/artist/artist.state';
 import { GetToken } from 'src/app/store/auth/auth.actions';
-import { AuthState } from 'src/app/store/auth/auth.state';
 
 @Component({
   selector: 'app-home',
@@ -45,7 +43,6 @@ export class HomeComponent implements OnInit {
       songSearch: new FormControl(),
     });
     this.store.dispatch(new ChangePageTitle('Seach Artists'));
-    let token = this.store.selectSnapshot<string>(AuthState.token);
     this.store.dispatch(new GetToken());
     this.formVal$ = fromEvent(this.searchInput.nativeElement, 'keyup').pipe(
       map((event: any) => event.target.value),
@@ -72,7 +69,7 @@ export class HomeComponent implements OnInit {
   saveSelectedArtist(artist: Artist) {
     this.store.dispatch(new SaveSelectedArtist(artist));
   }
-  trackByFn(index, artist: Artist) {
+  trackByFn(artist: Artist) {
     return artist.id;
   }
   ngOnDestroy() {

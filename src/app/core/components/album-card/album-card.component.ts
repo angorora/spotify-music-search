@@ -25,7 +25,7 @@ export class AlbumCardComponent implements OnInit {
 
   constructor(private store: Store) {}
   selectAlbum(album) {
-    this.albumClick.emit(this.album);
+    this.albumClick.emit(album);
   }
   ngOnInit(): void {}
 }

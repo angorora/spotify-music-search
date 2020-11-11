@@ -10,12 +10,10 @@ import {
   HttpErrorResponse,
   HttpResponse,
 } from '@angular/common/http';
-import jwt_decode from 'jwt-decode';
 import { catchError, tap } from 'rxjs/operators';
 import { ApiError, HTTPError } from '../../store/error/error.actions';
 import { AuthState } from '../../store/auth/auth.state';
 import { environment } from 'src/environments/environment';
-import { GetToken } from 'src/app/store/auth/auth.actions';
 @Injectable({
   providedIn: 'root',
 })
