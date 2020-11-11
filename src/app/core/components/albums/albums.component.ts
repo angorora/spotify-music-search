@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { ArtistState } from 'src/app/store/artist/artist.state';
   selector: 'app-albums',
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 //TODO Add more media query breakpoints
